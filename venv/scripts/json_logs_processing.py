@@ -10,7 +10,7 @@ sqlContext = HiveContext(sc)
 
 from pyspark.sql.functions import explode, col
 
-source_df = sc.read.option("multiline", "true").json("/Users/sharadbagal/BigData/Research/BNY-Code-Challenge/data/results.json")
+source_df = sc.read.option("multiline", "true").json("~/BigData/Research/BNY-Code-Challenge/data/results.json")
 convert2rows = source_df.select(explode("results").alias("results"))
 
 result_df = convert2rows.select(col("results.lastOpenedAt.iso").alias("lastOpenedAt"),
@@ -26,7 +26,7 @@ result_df = convert2rows.select(col("results.lastOpenedAt.iso").alias("lastOpene
                                 col("results.location.longitude").alias("longitude")
                           )
 
-result_df.write.format("csv").mode("append").option("delimiter", ",").save("/Users/sharadbagal/BigData/Research/BNY-Code-Challenge/data/exercise_2_result")
+result_df.write.format("csv").mode("append").option("delimiter", ",").save("~/BigData/Research/BNY-Code-Challenge/data/exercise_2_result")
 
 result_df.createOrReplaceTempView("json_result")
 sqlContext.sql("select timeZone, count(objectId) from json_result  group by timeZone").show()

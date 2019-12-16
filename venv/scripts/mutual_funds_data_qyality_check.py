@@ -12,7 +12,7 @@ funds = [pd.read_csv(f) for f in file_names]
 
 ## Mutual Fund Data Section Starts
 # Read the Fund_Data_1.csv File First
-file_loc = "/Users/sharadbagal/BigData/Research/BNY-Code-Challenge/data/"
+file_loc = "~/BigData/Research/BNY-Code-Challenge/data/"
 funds = pd.read_csv(file_loc + 'Fund_Data_1.csv',
                         sep=',',
                         header=0,
